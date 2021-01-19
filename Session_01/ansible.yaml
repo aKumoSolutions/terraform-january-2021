@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+  - ec2:
+      count: 2
+      image: ami-0affd4508a5d2481b
+      instance_type: t2.micro
+      region: us-east-1
+      instance_tags:
+        Name: ansible
