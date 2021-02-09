@@ -1,0 +1,1 @@
+this is the file to be uploaded by terraform to an s3 bucket created by a different terraform deployment
