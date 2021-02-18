@@ -1,17 +1,17 @@
 resource "aws_lb" "webserver_alb" {
-  name               = "${var.env}-webserve-asg"
+  name               = "${local.prefix}-asg"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = data.aws_subnet_ids.default.ids
 
   tags = {
-    name = "${var.env}-webserver-alb"
+    name = "${local.prefix}-alb"
   }
 }
 
 resource "aws_lb_target_group" "webserver_tg" {
-  name                          = "${var.env}-webserver-tg"
+  name                          = "${local.prefix}-tg"
   port                          = 80
   protocol                      = "HTTP"
   vpc_id                        = data.aws_vpc.default.id
@@ -34,7 +34,7 @@ resource "aws_lb_listener" "webserver_listener" {
 }
 
 resource "aws_security_group" "alb_sg" {
-  name        = "${var.env}-alb-sg"
+  name        = "${local.prefix}-alb-sg"
   description = "Allow http inbound traffic"
 
   tags = {

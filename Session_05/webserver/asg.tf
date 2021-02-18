@@ -1,5 +1,5 @@
 resource "aws_autoscaling_group" "webserver_asg" {
-  name                 = "${var.env}-webserve-asg"
+  name                 = "${local.prefix}-asg"
   vpc_zone_identifier  = data.aws_subnet_ids.default.ids
   target_group_arns = [aws_lb_target_group.webserver_tg.arn]
   desired_capacity     = 1
@@ -10,7 +10,7 @@ resource "aws_autoscaling_group" "webserver_asg" {
   health_check_type    = "EC2"
   tag {
     key                 = "Name"
-    value               = "${var.env}-webserver"
+    value               = "${local.prefix}"
     propagate_at_launch = true
   }
 
