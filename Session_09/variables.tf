@@ -10,3 +10,7 @@ variable "is_versioning_enabled" {
 variable "principals_list" {
   type = list(string)
 }
+
+variable "environment" {
+  
+}
